@@ -1,0 +1,24 @@
+<div class="login">
+  <form action="signup" method="post">
+    <div class="imgcontainer">
+      <img src="/img/avatar.png" alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="uname"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" value="{{email}}" required>
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" value="{{username}}" required>
+      <p style="color: red;">{{mes}}</p>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Sign up</button>
+      
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" class="cancelbtn">Cancel</button>
+    </div>
+  </form>
+</div>
