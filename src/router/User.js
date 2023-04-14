@@ -5,6 +5,13 @@ const userController = require('../controller/Usercontroller')
 
 router.post('/login', userController.login)
 router.post('/signup', userController.Signup)
-router.put('/updateuser', authByToken, userController.updateUser)
-
+router.put('/update', authByToken, userController.updateUser)
 module.exports = router;
+
+
+
+
+
+
+
+

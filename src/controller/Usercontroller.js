@@ -3,6 +3,14 @@ const { sign } = require('../utils/jwt');
 const { matchPassword, hashPassword } = require('../utils/password')
 
 class UserController {
+    async getUserProfile(req, res) {
+        const userId = req.body.userId
+        const user = await User.findById({ userId }).then(result => result.toObjectUser())
+        if (!user) {
+            res.status(401).json({ message: "Not user found" })
+        }
+        res.status.json({ user: user })
+    }
     async login(req, res) {
         try {
             const username = req.body.username;
@@ -101,7 +109,7 @@ class UserController {
         if (user.username) {
             target.username = user.username
         }
-        if (user.email) {
+        if (user.password) {
             const paw = await hashPassword(user.password)
             target.password = paw
         }

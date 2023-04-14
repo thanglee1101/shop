@@ -8,5 +8,12 @@ const user = new Schema({
     bio: { type: String },
     img: { type: String }
 })
-
+user.methods.toObjectUser = function() {
+    return {
+        email: this.email,
+        username: this.username,
+        bio: this.bio,
+        img: this.img
+    }
+}
 module.exports = mongoose.model('user', user);

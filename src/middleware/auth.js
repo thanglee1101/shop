@@ -16,7 +16,7 @@
      if (authHeader[0] !== "Token") {
          return res.status(401).json({
              errors: {
-                 body: [
+                 body: [ 
                      'Authorization Failed',
                      'Token missing'
                  ]

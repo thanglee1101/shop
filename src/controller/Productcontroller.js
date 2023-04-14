@@ -1,8 +1,15 @@
 const Product = require('../model/product')
 
 class productController {
-    getProductById(id) {
-
+    async getProductById(id) {
+        const slug = req.body.productId
+        const product = await Product.findOne({ slug })
+        if (!product) {
+            res.status(401).json({ message: "Product not found" })
+        }
+        return res.status(200).json({
+            product: await product.toProductResponse()
+        })
     }
     async getallproducts(req, res, next) {
         Product.find({}).then(
@@ -13,7 +20,6 @@ class productController {
 
         ).catch(next)
     }
-
     async createNewProduct(req, res) {
         const product = req.body.product;
         if (!product.code || !product.name || !product.price) {
@@ -31,7 +37,7 @@ class productController {
             return res.status(200).json(product)
         }
     }
-    async updateproduct(req, res, next) {
+    async updateProduct(req, res, next) {
         const newProduct = req.body.product;
         if (!newProduct.code) {
             return res.status(401).json({ message: "Unknow code product" })
@@ -63,8 +69,17 @@ class productController {
         return res.status(200).json({ user: existProduct })
     }
     async deleteProduct(req, res) {
-        const id = req.body.id
-
+        const productId = req.body.productId
+        if (!productId) {
+            res.status(401).json({ message: "no found ProductId" })
+        }
+        const existProduct = await Product.findOne({ productId: productId }).exec()
+        if (!existProduct) {
+            res.status(401).json({ message: "no found Product" })
+        }
+        existProduct.isDelete = true
+        existProduct.save
+        return res.status(200).json({ message: "Delete product success" })
     }
 }
 module.exports = new productController;

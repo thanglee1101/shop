@@ -1,12 +1,19 @@
 const express = require('express')
+
+
+
 const morgan = require('morgan')
 const handlebars = require('express-handlebars')
 const path = require('path')
 const route = require('./router/index')
 const db = require('./config/dbconnect')
 var bodyParser = require('body-parser')
+
 const app = express()
+
+
 const port = 3000
+
 
 db.connect();
 app.use(express.static(path.join(__dirname, 'public')))

@@ -20,10 +20,7 @@ class CartController {
             }
             return res.status(200).json({ cart: newCart })
         } else {
-
-
             return res.status(200).json({ cart: userCart })
-
         }
     }
     async addProductToCart(req, res) {
@@ -55,7 +52,6 @@ class CartController {
             })
             userCart.save();
             return res.status(200).json({ message: "add success" })
-
         }
     }
     async removeCartItem(req, res) {
